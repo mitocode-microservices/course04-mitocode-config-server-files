@@ -13,5 +13,5 @@ user-service:
   ribbon:
     eureka:
       enabled: false
-    listOfServers: localhost:9001, localhost:9011
+    listOfServers: localhost:9001, localhost:9011, localhost:9111
     ServerListRefreshInterval: 1500
