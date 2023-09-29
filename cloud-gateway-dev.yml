@@ -14,7 +14,7 @@ eureka:
 filter:
   parameters:
     appCallerName: MitocodeConfig
-    flag: true
+    flag: false
 
 spring:
   cloud:
