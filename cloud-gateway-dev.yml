@@ -11,6 +11,10 @@ eureka:
 
 # Cloud Gateway Routes
 
+filter:
+  parameters:
+    appCallerName: MitocodeConfig
+
 spring:
   cloud:
     gateway:
@@ -22,6 +26,7 @@ spring:
             - Path=/api/product-service/**
           filters:
             - StripPrefix=2
+            - AddRequestHeader=appCallerName, ${filter.parameters.appCallerName}
 
         - id: user-service
           uri: lb://user-service
