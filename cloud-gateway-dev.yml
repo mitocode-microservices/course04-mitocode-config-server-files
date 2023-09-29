@@ -14,6 +14,7 @@ eureka:
 filter:
   parameters:
     appCallerName: MitocodeConfig
+    flag: true
 
 spring:
   cloud:
@@ -27,6 +28,7 @@ spring:
           filters:
             - StripPrefix=2
             - AddRequestHeader=appCallerName, ${filter.parameters.appCallerName}
+            - AddRequestParameter=flag, ${filter.parameters.flag}
 
         - id: user-service
           uri: lb://user-service
