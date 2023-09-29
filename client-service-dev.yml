@@ -13,14 +13,14 @@ eureka:
 resilience4j:
   circuitbreaker:
     configs:
-      # cualquierId
-      userServiceCircuitBreaker:
+      userServiceCircuitBreaker: # cualquierId
         slidingWindowSize: 8
         failureRateThreshold: 60
         waitDurationInOpenState: 20s
         permittedNumberOfCallsInHalfOpenState: 8
         slowCallDurationThreshold: 1s
         slowCallRateThreshold: 50
+        
       productServiceCircuitBreaker:
         slidingWindowSize: 8
         failureRateThreshold: 60

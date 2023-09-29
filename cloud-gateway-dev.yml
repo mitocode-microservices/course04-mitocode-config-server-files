@@ -20,7 +20,7 @@ spring:
   cloud:
     gateway:
       routes:
-
+        
         - id: product-service
           uri: lb://product-service
           predicates:
