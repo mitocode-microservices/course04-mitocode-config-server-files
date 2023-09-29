@@ -15,13 +15,22 @@ resilience4j:
     configs:
       # cualquierId
       userServiceCircuitBreaker:
-        slidingWindowSize: 10
-        failureRateThreshold: 80
-        waitDurationInOpenState: 30s
+        slidingWindowSize: 8
+        failureRateThreshold: 60
+        waitDurationInOpenState: 20s
         permittedNumberOfCallsInHalfOpenState: 8
-        slowCallDurationThreshold: 2s
-        slowCallRateThreshold: 80
+        slowCallDurationThreshold: 1s
+        slowCallRateThreshold: 50
+      productServiceCircuitBreaker:
+        slidingWindowSize: 8
+        failureRateThreshold: 60
+        waitDurationInOpenState: 20s
+        permittedNumberOfCallsInHalfOpenState: 8
+        slowCallDurationThreshold: 1s
+        slowCallRateThreshold: 50
 
     instances:
       user-service-cb:
         base-config: userServiceCircuitBreaker #cualquierId
+      product-service-cb:
+        base-config: productServiceCircuitBreaker
