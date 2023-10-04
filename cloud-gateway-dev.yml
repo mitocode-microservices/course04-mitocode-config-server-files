@@ -12,15 +12,7 @@ eureka:
 # Circuit Breaker configuration
 resilience4j:
   circuitbreaker:
-    configs:
-      userServiceCircuitBreaker: # cualquierId
-        slidingWindowSize: 8
-        failureRateThreshold: 60
-        waitDurationInOpenState: 20s
-        permittedNumberOfCallsInHalfOpenState: 8
-        slowCallDurationThreshold: 1s
-        slowCallRateThreshold: 50
-        
+    configs:        
       productServiceCircuitBreaker:
         slidingWindowSize: 8
         failureRateThreshold: 60
@@ -30,8 +22,6 @@ resilience4j:
         slowCallRateThreshold: 50
 
     instances:
-      user-service-cb:
-        base-config: userServiceCircuitBreaker #cualquierId
       product-service-cb:
         base-config: productServiceCircuitBreaker
 
@@ -56,7 +46,7 @@ spring:
             - name: CircuitBreaker
               args:
                 name: product-service-cb
-                statusCode: 400, 404, 500, 503, 504
+                statusCode: 400, 401, 404, 500, 503, 504
             # - AddRequestHeader=appCallerName, ${filter.parameters.appCallerName}
             # - AddRequestParameter=flag, ${filter.parameters.flag}
             # - name: MitocodeProductFilter
