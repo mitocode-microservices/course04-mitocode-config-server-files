@@ -29,7 +29,7 @@ spring:
             - StripPrefix=2
             - name: MitocodeProductFilter
               args:
-                headerKey: MitocodeHeaderKey
+                headerKey: appCallerName
                 headerValue: Java17
             # - AddRequestHeader=appCallerName, ${filter.parameters.appCallerName}
             # - AddRequestParameter=flag, ${filter.parameters.flag}
