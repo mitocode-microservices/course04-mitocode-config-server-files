@@ -27,8 +27,12 @@ spring:
             - Path=/api/product-service/**
           filters:
             - StripPrefix=2
-            - AddRequestHeader=appCallerName, ${filter.parameters.appCallerName}
-            - AddRequestParameter=flag, ${filter.parameters.flag}
+            - name: MitocodeProductFilter
+              args:
+                headerKey: MitocodeHeaderKey
+                headerValue: Java17
+            # - AddRequestHeader=appCallerName, ${filter.parameters.appCallerName}
+            # - AddRequestParameter=flag, ${filter.parameters.flag}
 
         - id: user-service
           uri: lb://user-service
