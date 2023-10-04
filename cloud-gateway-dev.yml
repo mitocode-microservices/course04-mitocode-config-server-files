@@ -12,18 +12,17 @@ eureka:
 # Circuit Breaker configuration
 resilience4j:
   circuitbreaker:
-    configs:        
-      productServiceCircuitBreaker:
-        slidingWindowSize: 8
-        failureRateThreshold: 60
-        waitDurationInOpenState: 20s
-        permittedNumberOfCallsInHalfOpenState: 4
-        slowCallDurationThreshold: 1s
+    configs:
+      circuitBreakerProduct:
+        slidingWindowSize: 16
+        failureRateThreshold: 75
+        waitDurationInOpenState: 30s
+        permittedNumberOfCallsInHalfOpenState: 10
+        slowCallDurationThreshold: 200ms
         slowCallRateThreshold: 50
-
     instances:
-      product-service-cb:
-        base-config: productServiceCircuitBreaker
+      product-cb:
+        base-config: circuitBreakerProduct
 
 
 # Cloud Gateway Routes
@@ -45,8 +44,9 @@ spring:
             - StripPrefix=2
             - name: CircuitBreaker
               args:
-                name: product-service-cb
+                name: product-cb
                 statusCode: 400, 401, 404, 500, 503, 504
+                fallbackUri: forward:/api/user-service/user
             # - AddRequestHeader=appCallerName, ${filter.parameters.appCallerName}
             # - AddRequestParameter=flag, ${filter.parameters.flag}
             # - name: MitocodeProductFilter
