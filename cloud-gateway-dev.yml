@@ -41,7 +41,6 @@ spring:
           predicates:
             - Path=/api/product-service/**
           filters:
-            - StripPrefix=2
             - name: CircuitBreaker
               args:
                 name: product-cb
@@ -53,6 +52,7 @@ spring:
             #   args:
             #     headerKey: appCallerName
             #     headerValue: Java17
+            - StripPrefix=2
 
 
         - id: user-service
