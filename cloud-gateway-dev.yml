@@ -22,8 +22,14 @@ resilience4j:
         slowCallRateThreshold: 50
     instances:
       product-cb:
-        base-config: circuitBreakerProduct
-
+        base-config:    
+  timelimiter:
+    configs:
+      mitocodeTimeLimiterProduct:
+        timeoutDuration: 5ms
+    instances:
+      product-cb:
+        base-config: mitocodeTimeLimiterProduct
 
 # Cloud Gateway Routes
 filter:
