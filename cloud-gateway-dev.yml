@@ -36,7 +36,6 @@ spring:
   cloud:
     gateway:
       routes: 
-
         - id: product-service
           uri: lb://product-service
           predicates:
@@ -46,8 +45,8 @@ spring:
             - name: CircuitBreaker
               args:
                 name: product-cb
-                statusCode: 400, 401, 403, 500, 503, 504
-                fallbackUri: forward:/api/user-service/user
+                # statusCode: 400, 401, 403, 500, 503, 504
+                # fallbackUri: forward:/api/user-service/user
             # - AddRequestHeader=appCallerName, ${filter.parameters.appCallerName}
             # - AddRequestParameter=flag, ${filter.parameters.flag}
             # - name: MitocodeProductFilter
