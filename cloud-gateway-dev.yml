@@ -22,7 +22,7 @@ resilience4j:
         slowCallRateThreshold: 50
     instances:
       product-cb:
-        base-config:    
+        base-config: circuitBreakerProduct
   timelimiter:
     configs:
       mitocodeTimeLimiterProduct:
@@ -42,7 +42,7 @@ spring:
     gateway:
       routes:
         
-        - id: product-service
+        - id: product-service-route
           uri: lb://product-service
           predicates:
             - Path=/api/product-service/**
@@ -51,7 +51,7 @@ spring:
               args:
                 name: product-cb
                 statusCodes: 400, 401, 404, 500, 503, 504
-                fallbackUri: forward:/api/user-service/user
+                # fallbackUri: forward:/api/user-service/user
             # - AddRequestHeader=appCallerName, ${filter.parameters.appCallerName}
             # - AddRequestParameter=flag, ${filter.parameters.flag}
             # - name: MitocodeProductFilter
