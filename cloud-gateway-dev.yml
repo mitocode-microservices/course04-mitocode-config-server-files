@@ -23,13 +23,6 @@ resilience4j:
     instances:
       product-cb:
         base-config: circuitBreakerProduct
-  timelimiter:
-    configs:
-      mitocodeTimeLimiterProduct:
-        timeoutDuration: 2s
-    instances:
-      product-cb:
-        base-config: mitocodeTimeLimiterProduct
 
 # Cloud Gateway Routes
 filter:
@@ -42,24 +35,23 @@ spring:
     gateway:
       routes:
         
-        - id: product-service-route
+        - id: product-service
           uri: lb://product-service
           predicates:
             - Path=/api/product-service/**
           filters:
             - name: CircuitBreaker
               args:
-                name: product-cb
-                statusCodes: 400, 401, 404, 500, 503, 504
-                fallbackUri: /api/user-service/user
+                name: product-service-cb
+                statusCodes: 500, 404, 403, 401
+            - StripPrefix=2
+                # fallbackUri: forward:/api/user-service/user
             # - AddRequestHeader=appCallerName, ${filter.parameters.appCallerName}
             # - AddRequestParameter=flag, ${filter.parameters.flag}
             # - name: MitocodeProductFilter
             #   args:
             #     headerKey: appCallerName
             #     headerValue: Java17
-            - StripPrefix=2
-
 
         - id: user-service
           uri: lb://user-service
