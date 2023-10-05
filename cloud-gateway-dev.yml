@@ -33,8 +33,7 @@ filter:
 spring:
   cloud:
     gateway:
-      routes:
-        
+      routes:        
         - id: product-service
           uri: lb://product-service
           predicates:
@@ -44,8 +43,8 @@ spring:
               args:
                 name: product-service-cb
                 statusCodes: 500, 404, 403, 401
+                fallbackUri: /api/user-service/user
             - StripPrefix=2
-                # fallbackUri: forward:/api/user-service/user
             # - AddRequestHeader=appCallerName, ${filter.parameters.appCallerName}
             # - AddRequestParameter=flag, ${filter.parameters.flag}
             # - name: MitocodeProductFilter
