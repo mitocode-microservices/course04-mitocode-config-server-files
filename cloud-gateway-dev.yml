@@ -50,7 +50,7 @@ spring:
             - name: CircuitBreaker
               args:
                 name: product-cb
-                statusCode: 400, 401, 404, 500, 503, 504
+                statusCodes: 400, 401, 404, 500, 503, 504
                 fallbackUri: forward:/api/user-service/user
             # - AddRequestHeader=appCallerName, ${filter.parameters.appCallerName}
             # - AddRequestParameter=flag, ${filter.parameters.flag}
