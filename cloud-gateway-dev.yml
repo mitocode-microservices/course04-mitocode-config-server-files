@@ -14,9 +14,9 @@ resilience4j:
   circuitbreaker:
     configs:
       circuitBreakerProduct:
-        slidingWindowSize: 16
-        failureRateThreshold: 75
-        waitDurationInOpenState: 30s
+        slidingWindowSize: 10
+        failureRateThreshold: 50
+        waitDurationInOpenState: 20s
         permittedNumberOfCallsInHalfOpenState: 10
         slowCallDurationThreshold: 200ms
         slowCallRateThreshold: 50
@@ -41,7 +41,7 @@ spring:
           filters:
             - name: CircuitBreaker
               args:
-                name: product-service-cb
+                name: product-cb
                 statusCodes: 500, 404, 403, 401
                 fallbackUri: /api/user-service/user
             - StripPrefix=2
