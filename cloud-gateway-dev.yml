@@ -46,7 +46,7 @@ spring:
               args:
                 name: product-cb
                 statusCodes: 400, 401, 403, 500, 503, 504
-                fallbackUri: forward:/api/user-service/user
+                fallbackUri: forward:/api/user-service/mitocode/user
             # - AddRequestHeader=appCallerName, ${filter.parameters.appCallerName}
             # - AddRequestParameter=flag, ${filter.parameters.flag}
             # - name: MitocodeProductFilter
@@ -60,3 +60,10 @@ spring:
             - Path=/api/user-service/**
           filters:
             - StripPrefix=2
+
+        - id: user-service-all
+          uri: lb://user-service
+          predicates:
+            - Path=/api/user-service/mitocode/user
+          filters:
+            - StripPrefix=4
