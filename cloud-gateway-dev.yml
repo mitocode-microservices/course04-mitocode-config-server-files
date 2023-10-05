@@ -14,37 +14,40 @@ resilience4j:
   circuitbreaker:
     configs:
       circuitBreakerProduct:
-        slidingWindowSize: 10
-        failureRateThreshold: 50
-        waitDurationInOpenState: 20s
+        slidingWindowSize: 16
+        failureRateThreshold: 75
+        waitDurationInOpenState: 30s
         permittedNumberOfCallsInHalfOpenState: 10
         slowCallDurationThreshold: 200ms
         slowCallRateThreshold: 50
     instances:
       product-cb:
         base-config: circuitBreakerProduct
+  timelimiter:
+    configs:
+      timeLimiterProduct:
+        timeoutDuration: 1700
+    instances:
+      product-cb:
+        base-config: timeLimiterProduct
 
 # Cloud Gateway Routes
-filter:
-  parameters:
-    appCallerName: MitocodeConfig
-    flag: false
-
 spring:
   cloud:
     gateway:
-      routes:        
+      routes: 
+
         - id: product-service
           uri: lb://product-service
           predicates:
             - Path=/api/product-service/**
           filters:
+            - StripPrefix=2
             - name: CircuitBreaker
               args:
                 name: product-cb
-                statusCodes: 500, 404, 403, 401
-                fallbackUri: /api/user-service/user
-            - StripPrefix=2
+                statusCode: 400, 401, 403, 500, 503, 504
+                fallbackUri: forward:/api/user-service/user
             # - AddRequestHeader=appCallerName, ${filter.parameters.appCallerName}
             # - AddRequestParameter=flag, ${filter.parameters.flag}
             # - name: MitocodeProductFilter
