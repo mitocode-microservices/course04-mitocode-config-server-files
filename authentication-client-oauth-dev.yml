@@ -14,7 +14,7 @@ spring:
     oauth2:
       client:
         registration:
-           # google
-           github:
-             client-id: 86b4ade4571f0ed21b31
-             client-secret: 1f8e9d47fe8063893ce9dedba8148c0d5c05fff7
+           # github
+           google:
+             client-id: 932695674702-jlscfo55b53uvtvuqhjd3tbea0mdpkhi.apps.googleusercontent.com
+             client-secret: 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
