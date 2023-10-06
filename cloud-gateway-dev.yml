@@ -69,3 +69,7 @@ spring:
             - Path=/api/user-service/mitocode/user
           filters:
             - StripPrefix=4
+
+mitocode:
+  security:
+    key: mitocode
