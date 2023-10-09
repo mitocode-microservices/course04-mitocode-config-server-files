@@ -70,11 +70,6 @@ spring:
           filters:
             - StripPrefix=4
 
-
-  main:
-    web-application-type: reactive
-    allow-bean-definition-overriding: true
-
 mitocode:
   security:
     client: mitocode
