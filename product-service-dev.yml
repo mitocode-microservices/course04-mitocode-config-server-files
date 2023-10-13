@@ -28,17 +28,22 @@ spring:
     username: mitocode
     password: mitocode
 
-  security:
-    oauth2:
-      client:
-        provider:
-          external:
-            issuer-uri: http://localhost:8080/realms/external
-        registration:
-          external:
-            provider: external
-            client-name: external-client
-            client-id: external-client
-            client-secret: MtbhMWVBcUi7Xp31U6GEofDp7jS88B6X
-            scope: openid
-            authorization-grant-type: authorization_code
+  # security:
+  #   oauth2:
+  #     client:
+  #       provider:
+  #         external:
+  #           issuer-uri: http://localhost:8080/realms/external
+  #       registration:
+  #         external:
+  #           provider: external
+  #           client-name: external-client
+  #           client-id: external-client
+  #           client-secret: MtbhMWVBcUi7Xp31U6GEofDp7jS88B6X
+  #           scope: openid
+  #           authorization-grant-type: authorization_code
+
+springdoc:
+  api-docs:
+    path: /api-docs
+    enabled: true
