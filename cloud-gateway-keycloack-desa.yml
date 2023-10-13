@@ -43,11 +43,11 @@ spring:
             - Path=/api/product-service/**
           filters:
             - StripPrefix=2
-            - name: CircuitBreaker
-              args:
-                name: product-cb
-                statusCode: 400, 401, 403, 500, 503, 504
-                fallbackUri: forward:/api/user-service/user
+            # - name: CircuitBreaker
+            #   args:
+            #     name: product-cb
+            #     statusCode: 400, 401, 403, 500, 503, 504
+            #     fallbackUri: forward:/api/user-service/user
 
         - id: user-service
           uri: lb://user-service
