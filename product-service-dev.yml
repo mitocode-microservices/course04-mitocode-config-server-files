@@ -50,3 +50,20 @@ springdoc:
   swagger-ui:
     path: swagger-ui.html
     enabled: true
+
+info:
+  app:
+    name: Producto Service Mitocode
+    description: Módulo de la arquitectura de Microservicios que disponibiliza la información de los productos
+    version: 0.0.1
+
+management:
+  endpoints:
+    info:
+      env:
+        enabled: true
+    web:
+      exposure:
+        include: 'metrics, disk_space, mem, cpu, prometheus'
+        # include: '*
+        base-path: /actuator
