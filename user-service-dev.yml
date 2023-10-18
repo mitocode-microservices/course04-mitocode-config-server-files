@@ -14,3 +14,21 @@ spring:
   data:
     mongodb:
       uri: mongodb://mitocode:mitocode@localhost:27017/mitocode?authSource=admin
+
+
+info:
+  app:
+    name: User Service Mitocode
+    description: Módulo de la arquitectura de Microservicios que disponibiliza la información de los usuario
+    version: 0.0.1
+
+management:
+  endpoints:
+    info:
+      env:
+        enabled: true
+    web:
+      exposure:
+        # include: 'metrics, disk_space, mem, cpu, prometheus'
+        include: '*'
+        base-path: /actuator
