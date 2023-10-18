@@ -64,6 +64,6 @@ management:
         enabled: true
     web:
       exposure:
-        include: 'metrics, disk_space, mem, cpu, prometheus'
-        # include: '*
+        # include: 'metrics, disk_space, mem, cpu, prometheus'
+        include: '*'
         base-path: /actuator
