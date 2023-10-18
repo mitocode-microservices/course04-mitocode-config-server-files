@@ -34,3 +34,24 @@ resilience4j:
         base-config: userServiceCircuitBreaker #cualquierId
       product-service-cb:
         base-config: productServiceCircuitBreaker
+
+
+info:
+  app:
+    name: Client Service Mitocode
+    description: Módulo de la arquitectura de Microservicios
+    version: 0.0.1
+
+management:
+  endpoints:
+    info:
+      env:
+        enabled: true
+    web:
+      exposure:
+        # include: 'metrics, disk_space, mem, cpu, prometheus'
+        include: '*'
+        base-path: /actuator
+    tracing:
+      sampling:
+        probability: 1.0
