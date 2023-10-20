@@ -67,3 +67,9 @@ management:
         # include: 'metrics, disk_space, mem, cpu, prometheus'
         include: '*'
         base-path: /actuator
+
+kafka:
+  mitocode:
+    topic: mitocode
+    server: 127.0.0.1
+    port: 9092
