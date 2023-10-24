@@ -1,14 +1,6 @@
 server:
   port: ${CUSTOM.SERVER.PORT:9005}
 
-# Eureka Client Configuration
-eureka:
-  client:
-    fetchRegistry: true
-    registerWithEureka: true
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka
-      
 # Circuit Breaker configuration
 resilience4j:
   circuitbreaker:
@@ -41,17 +33,3 @@ info:
     name: Client Service Mitocode
     description: Módulo de la arquitectura de Microservicios
     version: 0.0.1
-
-management:
-  endpoints:
-    info:
-      env:
-        enabled: true
-    web:
-      exposure:
-        # include: 'metrics, disk_space, mem, cpu, prometheus'
-        include: '*'
-        base-path: /actuator
-    tracing:
-      sampling:
-        probability: 1.0
