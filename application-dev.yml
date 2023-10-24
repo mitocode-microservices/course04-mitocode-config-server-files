@@ -1,2 +1,90 @@
 server:
   port: 9091
+
+# Eureka configuration
+eureka:
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: ${EUREKA.SERVER.HOSTNAME:http://localhost:8761/eureka}
+
+### Mongo database configuration
+spring:
+  data:
+    mongodb:
+      uri: ${MONGODB.URL.CONNECTION:mongodb://mitocode:mitocode@localhost:27017/mitocode?authSource=admin}
+
+### Postgresql database configuration
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show: true
+    properties:
+      hibernate:
+        format_sql: true
+#        dialect: org.hibernate.dialect.PostgreSQL81Dialect
+  datasource:
+    url: ${POSTGRESQL.URL.CONNECTION:jdbc:postgresql://localhost:5432/mitocode}
+    username: mitocode
+    password: mitocode
+
+# Circuit Breaker configuration
+resilience4j:
+  circuitbreaker:
+    configs:
+      userServiceCircuitBreaker: # cualquierId
+        slidingWindowSize: 8
+        failureRateThreshold: 60
+        waitDurationInOpenState: 20s
+        permittedNumberOfCallsInHalfOpenState: 8
+        slowCallDurationThreshold: 1s
+        slowCallRateThreshold: 50
+        
+      productServiceCircuitBreaker:
+        slidingWindowSize: 8
+        failureRateThreshold: 60
+        waitDurationInOpenState: 20s
+        permittedNumberOfCallsInHalfOpenState: 4
+        slowCallDurationThreshold: 1s
+        slowCallRateThreshold: 50
+
+    instances:
+      user-service-cb:
+        base-config: userServiceCircuitBreaker #cualquierId
+      product-service-cb:
+        base-config: productServiceCircuitBreaker
+
+# Actuator configuration
+management:
+  endpoints:
+    info:
+      env:
+        enabled: true
+    web:
+      exposure:
+        # include: 'metrics, disk_space, mem, cpu, prometheus'
+        include: '*'
+        base-path: /actuator
+    tracing:
+      sampling:
+        probability: 1.0
+
+# OpenAPI Configuration
+springdoc:
+  api-docs:
+    path: /api-docs
+    enabled: true
+  swagger-ui:
+    path: swagger-ui.html
+    enabled: true
+  show-actuator: false
+
+# Logging Configuration
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+  pattern:
+    level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'
