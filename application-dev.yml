@@ -1,6 +1,3 @@
-server:
-  port: 9091
-
 # Eureka configuration
 eureka:
   client:
