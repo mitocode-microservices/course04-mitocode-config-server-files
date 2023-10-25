@@ -9,12 +9,6 @@ eureka:
     serviceUrl:
       defaultZone: ${EUREKA.SERVER.HOSTNAME:http://localhost:8761/eureka}
 
-### Mongo database configuration
-spring:
-  data:
-    mongodb:
-      uri: ${MONGODB.URL.CONNECTION:mongodb://mitocode:mitocode@localhost:27017/mitocode?authSource=admin}
-
 ### Postgresql database configuration
   jpa:
     hibernate:

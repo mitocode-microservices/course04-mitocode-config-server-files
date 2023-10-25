@@ -16,6 +16,13 @@ server:
   #           scope: openid
   #           authorization-grant-type: authorization_code
 
+### Mongo database configuration
+spring:
+  data:
+    mongodb:
+      uri: ${MONGODB.URL.CONNECTION:mongodb://mitocode:mitocode@localhost:27017/mitocode?authSource=admin}
+
+
 info:
   app:
     name: Producto Service Mitocode
