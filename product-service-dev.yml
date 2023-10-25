@@ -1,3 +1,6 @@
+server:
+  port: ${CUSTOM.SERVER.PORT:9002}
+
   # security:
   #   oauth2:
   #     client:
