@@ -36,6 +36,7 @@ spring:
   cloud:
     gateway:
       routes:
+
         - id: product-service
           uri: lb://product-service
           predicates:
@@ -69,6 +70,22 @@ spring:
             - Path=/api/user-service/mitocode/user
           filters:
             - StripPrefix=4
+
+        - id: product-query-service
+          uri: lb://product-query-service
+          predicates:
+            - Path=/api/product-query-service/**
+            - Weight=product-query-service, 5
+          filters:
+            - StripPrefix=2
+
+        - id: product-query-service-tobe
+          uri: lb://product-query-service-tobe
+          predicates:
+            - Path=/api/product-query-service/**
+            - Weight=product-query-service, 95
+          filters:
+            - StripPrefix=2
 
 mitocode:
   security:
