@@ -1,6 +1,12 @@
 server:
   port: ${CUSTOM.SERVER.PORT:9999}
-      
+
+### Mongo database configuration
+spring:
+  data:
+    mongodb:
+      uri: ${MONGODB.URL.CONNECTION:mongodb://mitocode:mitocode@localhost:27018/mitocode?authSource=admin}
+
 # Actuator configuration
 info:
   app:
