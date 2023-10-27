@@ -29,7 +29,7 @@ spring:
     mongodb:
       host: localhost
       port: 27017
-      database: mitocodedb
+      database: mitocode
       uri: ${MONGODB.CONNECTION.URL:mongodb://mitocode:mitocode@localhost:27017}
       authentication-database: admin
 
