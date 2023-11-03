@@ -6,3 +6,8 @@ info:
     name: User Service Mitocode
     description: Módulo de la arquitectura de Microservicios que disponibiliza la información de los usuario
     version: 0.0.1
+
+spring:
+  data:
+    mongodb:
+      uri: ${MONGODB.URL.CONNECTION:mongodb://mitocode:mitocode@localhost:27017/mitocode?authSource=admin}
