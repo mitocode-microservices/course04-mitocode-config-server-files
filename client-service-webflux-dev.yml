@@ -32,6 +32,31 @@ spring:
 
 info:
   app:
-    name: Client Service Mitocode
+    name: Client Service Webflux Mitocode
     description: Módulo de la arquitectura de Microservicios
     version: 0.0.1
+
+
+# Actuator configuration
+management:
+  endpoints:
+    info:
+      env:
+        enabled: true
+    web:
+      exposure:
+        # include: 'metrics, disk_space, mem, cpu, prometheus'
+        include: '*'
+        base-path: /actuator
+    tracing:
+      sampling:
+        probability: 1.0
+
+# Logging Configuration
+logging:
+  level:
+    org:
+      springframework:
+        web: ALL
+  pattern:
+    level: '%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]'
