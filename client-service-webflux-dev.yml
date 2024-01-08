@@ -1,5 +1,5 @@
-#server:
-#  port: ${CUSTOM.SERVER.PORT:9005}
+server:
+  port: ${CUSTOM.SERVER.PORT:9005}
 
 # Circuit Breaker configuration
 # resilience4j:
@@ -28,7 +28,7 @@
 #         base-config: productServiceCircuitBreaker
 spring:
   main:
-    web-application-type: none
+    web-application-type: reactive
 
 info:
   app:
